@@ -7,6 +7,7 @@ module.exports = {
       backgroundImage: {
         'BG-chair': "url('/src/assets/images/bg.png')",
         'BG-appoinment': "url('/src/assets/images/appointment.png')",
+        'BG-footer': "url('/src/assets/images/footer.png')",
       }
     },
   },
