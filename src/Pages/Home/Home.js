@@ -1,24 +1,22 @@
 import React from 'react';
-import InfoCard from '../../InfoCard/InfoCard';
 import Banner from './Banner';
-import Services from './Services';
-import Treatment from './Treatment';
-import Appoinment from './Appoinment';
-import Testimonial from './Testimonial';
-import ContactUs from './ContactUs';
+import Contact from './Contact';
 import Footer from '../Shared/Footer';
+import Info from './Info';
+import MakeAppointment from './MakeAppointment';
+import Services from './Services';
+import Testimonials from './Testimonials';
 
 const Home = () => {
     return (
         <div>
-            <Banner />
-            <InfoCard />
-            <Services />
-            <Treatment />
-            <Appoinment />
-            <Testimonial />
-            <ContactUs />
-            <Footer />
+            <Banner></Banner>
+            <Info></Info>
+            <Services></Services>
+            <MakeAppointment></MakeAppointment>
+            <Testimonials></Testimonials>
+            <Contact></Contact>
+            <Footer></Footer>
         </div>
     );
 };
