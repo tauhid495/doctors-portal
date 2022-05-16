@@ -1,42 +1,46 @@
 import React from 'react';
-import fluoride from '../../assets/images/fluoride.png';
+import Service from './Service';
+import fluride from '../../assets/images/fluoride.png';
 import cavity from '../../assets/images/cavity.png';
 import whitening from '../../assets/images/whitening.png';
-import Service from './Service';
 
 const Services = () => {
+
     const services = [
         {
-            _id: 1,
-            name: 'Fluoride Treatment',
-            description: '',
-            img: fluoride
+            "_id": 1,
+            "image": fluride,
+            "title": "Fluride Treatment",
+            "description": "Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the"
         },
         {
-            _id: 2,
-            name: 'Cavity Filling',
-            description: '',
-            img: cavity
+            "_id": 2,
+            "image": cavity,
+            "title": "Cavity Filling",
+            "description": "Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the"
         },
         {
-            _id: 3,
-            name: 'Teeth Whitening',
-            description: '',
-            img: whitening
-        },
-    ];
+            "_id": 3,
+            "image": whitening,
+            "title": "Teeth Whitening",
+            "description": "Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the"
+        }
+    ]
+
     return (
-        <div className='my-28'>
-            <div className='text-center'>
-                <h3 className='text-primary  text-xl font-bold uppercase'>Our Services</h3>
-                <h2 className='text-4xl'>Services We Provide</h2>
+        <div>
+            <div className='text-center my-24'>
+                <h1 className='uppercase text-primary font-bold'>our services</h1>
+
+                <p className='text-3xl font-semibold text-accent'>Service We Provide</p>
             </div>
-            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+
+            <div className='md:grid grid-cols-3 p-4 gap-10'>
                 {
-                    services.map(service =><Service
+                    services.map(service => <Service
                         key={service._id}
                         service={service}
-                    ></Service>)
+                    />)
                 }
             </div>
         </div>
