@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
-
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import auth from '../../firebase.init';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useToken from '../../hooks/useToken';
 
 const Login = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const [
         signInWithEmailAndPassword,
         user,
@@ -19,46 +18,44 @@ const Login = () => {
 
     const [token] = useToken(user || gUser);
 
-    const { register, formState: { errors }, handleSubmit } = useForm();
-
     let signInError;
-    const location = useLocation();
     const navigate = useNavigate();
+    const location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
-    useEffect(() => {
+    useEffect( () =>{
         if (token) {
             navigate(from, { replace: true });
         }
     }, [token, from, navigate])
 
     if (loading || gLoading) {
-        return <Loading />
+        return <Loading></Loading>
     }
 
-    if (error || gError) {
-        signInError = <p className='text-red-600'>{error?.message || gError?.message}</p>
+    if(error || gError){
+        signInError= <p className='text-red-500'><small>{error?.message || gError?.message }</small></p>
     }
 
     const onSubmit = data => {
-        console.log(data)
-        signInWithEmailAndPassword(data.email, data.password)
-    };
-
+        signInWithEmailAndPassword(data.email, data.password);
+    }
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-base-200">
-
-            <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className='flex h-screen justify-center items-center'>
+            <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <h1 className='text-2xl text-center'>Login</h1>
+                    <h2 className="text-center text-2xl font-bold">Login</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="form-control">
+
+                        <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
                             <input
-                                type="email" placeholder="email" className="input input-bordered"
+                                type="email"
+                                placeholder="Your Email"
+                                className="input input-bordered w-full max-w-xs"
                                 {...register("email", {
                                     required: {
                                         value: true,
@@ -66,7 +63,7 @@ const Login = () => {
                                     },
                                     pattern: {
                                         value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                                        message: 'Provide valid Email'
+                                        message: 'Provide a valid Email'
                                     }
                                 })}
                             />
@@ -98,26 +95,20 @@ const Login = () => {
                                 {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                                 {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                             </label>
-
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
                         </div>
+
                         {signInError}
-                        <div className="form-control mt-6">
-                            <button className="btn btn-primary">Login</button>
-                        </div>
-                        <p>New to doctors portal?
-                            <Link className='text-secondary font-semibold' to='/register'> Create new account</Link> </p>
+                        <input className='btn w-full max-w-xs text-white' type="submit" value="Login" />
                     </form>
-
+                    <p><small>New to Doctors Portal <Link className='text-primary' to="/signup">Create New Account</Link></small></p>
                     <div className="divider">OR</div>
-                    <button onClick={() => signInWithGoogle()}
-                        className="btn btn-outline uppercase">Continue with google</button>
+                    <button
+                        onClick={() => signInWithGoogle()}
+                        className="btn btn-outline"
+                    >Continue with Google</button>
                 </div>
             </div>
-
-        </div>
+        </div >
     );
 };
 

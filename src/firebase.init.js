@@ -1,14 +1,17 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBM7olAHcgR68eQESCtFFoKcf6S1wGtmQg",
-  authDomain: "doctors-portal-177df.firebaseapp.com",
-  projectId: "doctors-portal-177df",
-  storageBucket: "doctors-portal-177df.appspot.com",
-  messagingSenderId: "17064604658",
-  appId: "1:17064604658:web:7a48a03efe793567feb16b"
+  apiKey: process.env.REACT_APP_APIKEY,
+  authDomain: process.env.REACT_APP_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_PROJECTID,
+  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDERID,
+  appId: process.env.REACT_APP_APPID,
 };
 
 // Initialize Firebase
