@@ -10,6 +10,7 @@ const Navbar = () => {
 
     const logout = () => {
         signOut(auth);
+        localStorage.removeItem('accessToken');
     };
 
     const menuItems = <>
@@ -18,7 +19,7 @@ const Navbar = () => {
         <li><CustomLink to='/makeappoinment'>Appointment</CustomLink></li>
         <li><CustomLink to='/about'>About</CustomLink></li>
         {
-        user && <li><CustomLink to='/dashboard'>Dashboard</CustomLink></li>
+            user && <li><CustomLink to='/dashboard'>Dashboard</CustomLink></li>
         }
         <li><CustomLink to='/'>Reviews</CustomLink></li>
         <li><CustomLink to='/'>Contact Us</CustomLink></li>
