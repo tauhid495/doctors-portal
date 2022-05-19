@@ -5,39 +5,39 @@ import UserRow from './UserRow';
 
 const Users = () => {
 
-    const { data: users, isLoading } = useQuery('users', () => fetch('https://infinite-everglades-54280.herokuapp.com/user').then(res => res.json()));
+  const { data: users, isLoading } = useQuery('users', () => fetch('https://infinite-everglades-54280.herokuapp.com/user').then(res => res.json()));
 
-    if (isLoading) {
-        return <Loading></Loading>
-    }
+  if (isLoading) {
+    return <Loading></Loading>
+  }
 
-    return (
-        <div>
-            All Users:{users.length}
+  return (
+    <div>
+      All Users:{users.length}
 
-            <div class="overflow-x-auto">
-  <table class="table w-full">
-    {/* <!-- head --> */}
-    <thead>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-      </tr>
-    </thead>
-    <tbody>
-      {/* <!-- row 1 --> */}
-      {
-          users.map(user=><UserRow
-          key={user._id} user={user}
-          />)
-      }
-    </tbody>
-  </table>
-</div>
-        </div>
-    );
+      <div class="overflow-x-auto">
+        <table class="table w-full">
+          {/* <!-- head --> */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Job</th>
+              <th>Favorite Color</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* <!-- row 1 --> */}
+            {
+              users.map(user => <UserRow
+                key={user._id} user={user}
+              />)
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 export default Users;
